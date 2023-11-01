@@ -5,18 +5,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainView {
+public class SimpleView {
     private JFrame mainFrame;
     private JLabel greetingsLbl;
     private JLabel alignmentLbl;
 
-    public MainView() {
+    public SimpleView() {
         this.mainFrame = new JFrame("My Simple GUI");
         this.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.mainFrame.setLayout(new FlowLayout());
         this.mainFrame.setSize(200,200);
         
-
         initializeGreetingElements();
         initializeAlignmentElements();
         initializeSwappingElements();
