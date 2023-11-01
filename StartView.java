@@ -5,7 +5,6 @@ import java.awt.event.*;
 
 public class StartView {
     private JPanel panel;
-    private JLabel greetingsLbl;
     private MainView mainView;
 
     public StartView(MainView mainView) {
@@ -43,8 +42,6 @@ public class StartView {
         });
         constraints.gridy = 2;
         panel.add(playButton, constraints);
-
-        this.greetingsLbl = new JLabel(" ");
 
         JButton exitButton = new JButton("Exit");
         exitButton.setFocusable(false);
