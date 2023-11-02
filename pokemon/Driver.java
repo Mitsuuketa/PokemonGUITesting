@@ -1,4 +1,4 @@
-package TextGame;
+package pokemon;
 
 public class Driver {
    /**

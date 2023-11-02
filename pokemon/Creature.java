@@ -1,4 +1,4 @@
-package TextGame;
+package pokemon;
 
 import java.util.ArrayList;
 import java.util.Scanner;

@@ -1,6 +1,10 @@
 package MyViews;
 import javax.swing.*;
+
+import MyModel.InventoryModel;
+
 import java.awt.*;
+import java.util.ArrayList;
 
 public class MainView {
 
@@ -21,7 +25,8 @@ public class MainView {
     }
 
     public void switchtoChooseStarterMenu() {
-        
+        ChooseStartersView csv = new ChooseStartersView(this,null);
+        switchToNewPanel(csv.getPanel());
     }
 
     public void switchtoEvolveMenu() {

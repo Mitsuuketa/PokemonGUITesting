@@ -2,6 +2,8 @@ package MyModel;
 
 import java.util.ArrayList;
 
+import pokemon.Creature;
+
 public class InventoryModel {
 
 
@@ -16,9 +18,12 @@ public class InventoryModel {
 
     }
 
+    
+
     /* 
     public ArrayList <Creature> getCaptured() {
         return creatures;
     }
     */ 
+
 }
