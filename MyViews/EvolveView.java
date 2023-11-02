@@ -1,5 +1,8 @@
 package MyViews;
 import javax.swing.*;
+
+import MyController.GameController;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -7,10 +10,10 @@ public class EvolveView {
 
     private JPanel panel;
     private JComboBox<String> creatureComboBox;
-    private MainView mainView;
+    private GameController gameController;
     
-    public EvolveView(MainView mainView) {
-        this.mainView = mainView;
+    public EvolveView(GameController gameController) {
+        this.gameController = gameController;
         this.panel = new JPanel();
         panel.setLayout(new BorderLayout()); // Use BorderLayout for the main panel
         initializeEvolveMenuGreetings();
@@ -75,7 +78,7 @@ public class EvolveView {
         exitBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainView.switchToPlayMenu();
+                gameController.switchToPlayMenu();
             }
         });
 

@@ -1,15 +1,18 @@
 package MyViews;
 import javax.swing.*;
+
+import MyController.GameController;
+
 import java.awt.*;
 import java.awt.event.*;
 
 public class InventoryView {
     private JPanel panel;
     private JComboBox<String> creatureComboBox;
-    private MainView mainView;
+    private GameController gameController;
     
-    public InventoryView(MainView mainView) {
-        this.mainView = mainView;
+    public InventoryView(GameController gameController) {
+        this.gameController = gameController;
         this.panel = new JPanel();
         panel.setLayout(new BorderLayout()); // Use BorderLayout for the main panel
         initializeInvMenuGreetings();
@@ -80,7 +83,7 @@ public class InventoryView {
         exitBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainView.switchToPlayMenu();
+                gameController.switchToPlayMenu();
             }
         });
 

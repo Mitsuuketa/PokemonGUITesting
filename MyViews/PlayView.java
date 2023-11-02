@@ -1,5 +1,8 @@
 package MyViews;
 import javax.swing.*;
+
+import MyController.GameController;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,10 +10,10 @@ import java.awt.event.ActionListener;
 public class PlayView {
 
     private JPanel panel;
-    private MainView mainView;
+    private GameController gameController;
 
-    public PlayView(MainView mainView) {
-        this.mainView = mainView;
+    public PlayView(GameController gameController) {
+        this.gameController = gameController;
         this.panel = new JPanel();
         initializePlayMenuGreetings();
     }
@@ -41,7 +44,7 @@ public class PlayView {
         btn1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainView.switchToInventoryMenu();
+                gameController.switchToInventoryMenu();
             }
         });
         constraints.gridy = 2;
@@ -52,7 +55,7 @@ public class PlayView {
         btn2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainView.switchtoExploreMenu();
+                gameController.switchtoExploreMenu();
             }
         });
         constraints.gridy = 3;
@@ -63,7 +66,7 @@ public class PlayView {
         btn3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainView.switchtoEvolveMenu();
+                gameController.switchtoEvolveMenu();
             }
         });
         constraints.gridy = 4;
@@ -74,7 +77,7 @@ public class PlayView {
         btn4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainView.switchtoStartMenu();
+                gameController.switchtoStartMenu();
             }
         });
         constraints.gridy = 5;

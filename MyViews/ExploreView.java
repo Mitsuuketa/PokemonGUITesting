@@ -1,15 +1,18 @@
 package MyViews;
 import javax.swing.*;
+
+import MyController.GameController;
+
 import java.awt.*;
 import java.awt.event.*;
 
 public class ExploreView {
 
     private JPanel panel;
-    private MainView mainView;
+    private GameController gameController;
     
-    public ExploreView(MainView mainView) {
-        this.mainView = mainView;
+    public ExploreView(GameController gameController) {
+        this.gameController = gameController;
         this.panel = new JPanel();
         initializeExploreMenuGreetings();
     }
@@ -72,7 +75,7 @@ public class ExploreView {
         btn4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainView.switchToPlayMenu();
+                gameController.switchToPlayMenu();
             }
         });
         constraints.gridy = 5;

@@ -1,16 +1,19 @@
 package MyViews;
 
 import javax.swing.*;
+
+import MyController.GameController;
+
 import java.awt.*;
 import java.awt.event.*;
 
 
 public class StartView {
     private JPanel panel;
-    private MainView mainView;
+    private GameController gameController;
 
-    public StartView(MainView mainView) {
-        this.mainView = mainView;
+    public StartView(GameController gameController) {
+        this.gameController = gameController;
         this.panel = new JPanel();
         initializeStartMenuGreeting();
     }
@@ -37,7 +40,7 @@ public class StartView {
         playButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainView.switchtoChooseStarterMenu();
+                gameController.switchtoChooseStarterMenu();
             }
             
         });
