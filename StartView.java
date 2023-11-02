@@ -33,7 +33,6 @@ public class StartView {
         JButton playButton = new JButton("Play");
         playButton.setFocusable(false);
         playButton.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainView.switchToPlayMenu();
@@ -43,10 +42,9 @@ public class StartView {
         constraints.gridy = 2;
         panel.add(playButton, constraints);
 
-        JButton exitButton = new JButton("Exit");
+        JButton exitButton = new JButton("Exit Game");
         exitButton.setFocusable(false);
         exitButton.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);

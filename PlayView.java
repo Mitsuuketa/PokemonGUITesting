@@ -6,8 +6,10 @@ import java.awt.event.ActionListener;
 public class PlayView {
 
     private JPanel panel;
-    
-    public PlayView() {
+    private MainView mainView;
+
+    public PlayView(MainView mainView) {
+        this.mainView = mainView;
         this.panel = new JPanel();
         initializePlayMenuGreetings();
     }
@@ -34,45 +36,44 @@ public class PlayView {
         panel.add(subLabel, constraints);
 
         JButton btn1 = new JButton("View Inventory");
+        btn1.setFocusable(false);
         btn1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JLabel greetingsLbl = new JLabel();
-                greetingsLbl.setText("View Inventory");
+                mainView.switchToInventoryMenu();
             }
         });
         constraints.gridy = 2;
         panel.add(btn1, constraints);
 
-
-       JButton btn2 = new JButton("Explore Area");
+        JButton btn2 = new JButton("Explore Area");
+        btn2.setFocusable(false);
         btn2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JLabel greetingsLbl = new JLabel();
-                greetingsLbl.setText("Explore");
+                mainView.switchtoExploreMenu();
             }
         });
         constraints.gridy = 3;
         panel.add(btn2, constraints);
 
         JButton btn3 = new JButton("Evolve Creature");
+        btn3.setFocusable(false);
         btn3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JLabel greetingsLbl = new JLabel();
-                greetingsLbl.setText("Evolve Creature");
+                mainView.switchtoEvolveMenu();
             }
         });
         constraints.gridy = 4;
         panel.add(btn3, constraints);
 
         JButton btn4 = new JButton("Exit");
+        btn4.setFocusable(false);
         btn4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JLabel greetingsLbl = new JLabel();
-                greetingsLbl.setText("Exit");
+                mainView.switchtoStartMenu();
             }
         });
         constraints.gridy = 5;
@@ -80,5 +81,4 @@ public class PlayView {
 
     }
 
-
- }
+}
