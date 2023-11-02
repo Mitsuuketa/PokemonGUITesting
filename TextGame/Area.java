@@ -1,31 +1,32 @@
-package MyController;
+package TextGame;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class AreaController {
+public class Area {
     private char[][] tiles;
     private int playerX;
     private int playerY;
     private int numRows;
     private int numCols;
     private Random random;
-    private BattleController battle;
+    private Battle battle;
     private Game game;
 
    // The `public Area(ArrayList<Creature> capturedList, ArrayList<Creature> creaturesList, Inventory
    // inventory)` constructor is initializing a new instance of the `Area` class. It takes three
    // parameters: `capturedList`, `creaturesList`, and `inventory`.
-    public AreaController(ArrayList<CreatureController> capturedList, ArrayList<CreatureController> creaturesList, InventoryController inventory) {
+    public Area(ArrayList<Creature> capturedList, ArrayList<Creature> creaturesList, Inventory inventory) {
         this.playerX = 0;
         this.playerY = 0;
-        this.battle = new BattleController(capturedList, creaturesList, inventory);
+        this.battle = new Battle(capturedList, creaturesList, inventory);
         this.game = new Game();
     }
 
     // The `public Area() {}` is a default constructor for the `Area` class. It creates an instance of
     // the `Area` class without any parameters.
-    public AreaController() {}
+    public Area() {}
 
     /**
      * The function "exploreArea" allows the user to continuously explore an area until they choose to

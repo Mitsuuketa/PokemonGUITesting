@@ -20,6 +20,10 @@ public class MainView {
         this.mainFrame.setVisible(true);
     }
 
+    public void switchtoChooseStarterMenu() {
+        
+    }
+
     public void switchtoEvolveMenu() {
         EvolveView evolve = new EvolveView(this);
         switchToNewPanel(evolve.getPanel());

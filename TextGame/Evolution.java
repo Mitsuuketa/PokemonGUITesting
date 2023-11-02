@@ -1,17 +1,18 @@
-package MyModel;
+package TextGame;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class EvolutionModel {
-    private ArrayList<CreatureModel> capturedList;
-    private ArrayList<CreatureModel> creaturesList;
+public class Evolution {
+    private ArrayList<Creature> capturedList;
+    private ArrayList<Creature> creaturesList;
     private Game game;
 
     // The `Evolution` constructor is initializing the `capturedList`, `creaturesList`, and `game`
     // variables of the `Evolution` class. It takes two `ArrayList` parameters, `capturedList` and
     // `creaturesList`, and assigns them to the corresponding instance variables. It also creates a new
     // `Game` object and assigns it to the `game` variable.
-    public EvolutionModel(ArrayList<CreatureModel> capturedList, ArrayList<CreatureModel> creaturesList) {
+    public Evolution(ArrayList<Creature> capturedList, ArrayList<Creature> creaturesList) {
         this.capturedList = capturedList;
         this.creaturesList = creaturesList;
         this.game = new Game();
@@ -25,7 +26,7 @@ public class EvolutionModel {
      * @param capturedList An ArrayList of Creature objects that represents the list of captured
      * Pokemons.
      */
-    public void evolutionScreen(Scanner scanner, ArrayList<CreatureModel> capturedList) {
+    public void evolutionScreen(Scanner scanner, ArrayList<Creature> capturedList) {
         int evolveMenu = 1;
 
         scanner.nextLine();
@@ -42,7 +43,7 @@ public class EvolutionModel {
             System.out.println("+-----------------+-----------+----- --+-----------------+");
             System.out.println("|       Name      |   Type    | Family | Evolution Level |");
             System.out.println("+-----------------+-----------+--------+-----------------+");
-            for (CreatureModel allCreature : capturedList) {
+            for (Creature allCreature : capturedList) {
                 if (allCreature.getisCaptured() == true || allCreature.getisActive() == true) {
                     System.out.print(allCreature.creatureDetails(creatureNumber));
                     creatureNumber++;
@@ -74,7 +75,7 @@ public class EvolutionModel {
     public boolean evolveCreature(Scanner scanner) {
         int capturedCount = 0;
         
-        for(CreatureModel creature : capturedList) {
+        for(Creature creature : capturedList) {
             if(creature.getisCaptured()) {
                 capturedCount++;
             }
@@ -89,8 +90,8 @@ public class EvolutionModel {
 
         // Find the selected pokemon
         int currentIndex = 1;
-        CreatureModel selectedCreature = null;
-        for (CreatureModel creature : capturedList) {
+        Creature selectedCreature = null;
+        for (Creature creature : capturedList) {
             if (creature.getisCaptured()) {
                 if (currentIndex == selectedIndex) {
                     selectedCreature = creature;
@@ -110,9 +111,9 @@ public class EvolutionModel {
         }
 
         // Find a similar pokemon based on the selected pokemon
-        CreatureModel similarCreature = null;
+        Creature similarCreature = null;
         int nextSameCreatureIndex = 1;
-        for(CreatureModel creature : capturedList) {
+        for(Creature creature : capturedList) {
             if(creature.getisCaptured()) {
                 if(creature.getName().equals(selectedCreature.getName()) &&
                     nextSameCreatureIndex != currentIndex) {
@@ -136,8 +137,8 @@ public class EvolutionModel {
         System.out.println("Creature 2 to be evolved: " + similarCreature.getName() + " Family: " + similarCreature.getFamily() + " Type: " + similarCreature.getType() +  " at : " + nextSameCreatureIndex + "\n\n");
 
         // finds the appropriate evolution based on the family and evolution level
-        CreatureModel evolvedCreature = null;
-        for (CreatureModel candidate : creaturesList) {
+        Creature evolvedCreature = null;
+        for (Creature candidate : creaturesList) {
             if(candidate.getFamily().equalsIgnoreCase(selectedCreature.getFamily())
                 && candidate.getEvoLvl() == selectedCreature.getEvoLvl() + 1) {
                 evolvedCreature = candidate;
@@ -162,7 +163,7 @@ public class EvolutionModel {
      * @param evolvedCreature The evolvedCreature parameter is the creature that the selectedCreature
      * is evolving into.
      */
-    private void performEvolution(CreatureModel selectedCreature, CreatureModel similarCreature, CreatureModel evolvedCreature) {
+    private void performEvolution(Creature selectedCreature, Creature similarCreature, Creature evolvedCreature) {
         System.out.println("Evolution of " + selectedCreature.getName() + " into " + evolvedCreature.getName() + " succeeds!");
         System.out.println(evolvedCreature.getName() + " is now your active Pokemon!");
 
@@ -173,7 +174,7 @@ public class EvolutionModel {
         
         evolvedCreature.setCaptured(true);
 
-        for (CreatureModel creature : capturedList) {
+        for (Creature creature : capturedList) {
             creature.setActive(false);
         }
 

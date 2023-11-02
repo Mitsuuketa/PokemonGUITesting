@@ -1,4 +1,5 @@
-package MyModel;
+package TextGame;
+
 public enum Direction {
     UP,
     DOWN,

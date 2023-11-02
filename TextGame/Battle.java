@@ -1,23 +1,24 @@
-package MyController;
+package TextGame;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 
-public class BattleController {
-    private InventoryController inventory;
-    private CreatureController activeCreature = new CreatureController();
-    private CreatureController enemyCreature = new CreatureController();    
-    private ArrayList<CreatureController> level1Creatures = new ArrayList<>();
-    private ArrayList<CreatureController> capturedList;
-    private ArrayList<CreatureController> creaturesList;
+public class Battle {
+    private Inventory inventory;
+    private Creature activeCreature = new Creature();
+    private Creature enemyCreature = new Creature();    
+    private ArrayList<Creature> level1Creatures = new ArrayList<>();
+    private ArrayList<Creature> capturedList;
+    private ArrayList<Creature> creaturesList;
     private int enemyCurrentHP;
 
 
     // The `public Battle` constructor is initializing the `Battle` object with the provided
     // parameters. It takes in three parameters: `capturedList`, `creaturesList`, and `inventory`.
-    public BattleController (ArrayList<CreatureController> capturedList, ArrayList<CreatureController> creaturesList, InventoryController inventory) {
+    public Battle (ArrayList<Creature> capturedList, ArrayList<Creature> creaturesList, Inventory inventory) {
         this.creaturesList = creaturesList;
         this.capturedList = capturedList;
         this.inventory = inventory;
@@ -26,7 +27,7 @@ public class BattleController {
     // The `public Battle() { }` is a default constructor for the `Battle` class. It is an empty
     // constructor that does not take any parameters. It is used to create an instance of the `Battle`
     // class without initializing any properties or performing any actions.
-    public BattleController() { }
+    public Battle() { }
 
     /**
      * The function represents the battle phase of a game where the player encounters an enemy and has
@@ -169,7 +170,7 @@ public class BattleController {
      * @param activeCreature The current active creature that the player has control over.
      * @return The method is returning the active creature from the inventory.
      */
-    public CreatureController swap(Scanner scanner, CreatureController activeCreature) {
+    public Creature swap(Scanner scanner, Creature activeCreature) {
         if (inventory.showInventory(scanner)) {
             // After choosing a new active creature, return it
             return inventory.getActiveCreature();
@@ -190,15 +191,15 @@ public class BattleController {
         int baseCatchSuccess = (40 + 50 - enemyCreature.getHP());
         int uniqueID = inventory.generateUniqueID();
         Random random = new Random();
-        List<CreatureController> creaturesToAdd = new ArrayList<>();
+        List<Creature> creaturesToAdd = new ArrayList<>();
 
         if (random.nextInt(1, 100) < baseCatchSuccess) {
             boolean creatureFound = false;
     
-            for (CreatureController creature : capturedList) {
+            for (Creature creature : capturedList) {
                 if (enemyCreature == creature) {
                     // Add the captured creature to the new list
-                    creaturesToAdd.add(new CreatureController(
+                    creaturesToAdd.add(new Creature(
                         enemyCreature.getName(),
                         enemyCreature.getType(),
                         enemyCreature.getFamily(),
@@ -238,8 +239,8 @@ public class BattleController {
      * 
      * @param capturedList An ArrayList of Creature objects.
      */
-    public void setActiveCreature(ArrayList<CreatureController> capturedList) {
-        for(CreatureController creature : capturedList) {
+    public void setActiveCreature(ArrayList<Creature> capturedList) {
+        for(Creature creature : capturedList) {
             if(creature.getisActive() == true) {
                 this.activeCreature = creature;
             }
@@ -251,7 +252,7 @@ public class BattleController {
      * creatures.
      */
     public void setEnemyCreature(){
-        for(CreatureController creature : creaturesList) {
+        for(Creature creature : creaturesList) {
             if(creature.getEvoLvl() == 1) {
                 level1Creatures.add(creature);
             }

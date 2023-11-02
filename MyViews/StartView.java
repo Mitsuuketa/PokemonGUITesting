@@ -37,7 +37,7 @@ public class StartView {
         playButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainView.switchToPlayMenu();
+                mainView.switchtoChooseStarterMenu();
             }
             
         });

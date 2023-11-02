@@ -1,15 +1,16 @@
-package MyController;
+package TextGame;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Game {
-    private CreatureController creature = new CreatureController();
-    private AreaController area;
-    private ArrayList<CreatureController> creaturesList;
-    private ArrayList<CreatureController> capturedList;
-    private InventoryController inventory;
-    private EvolutionController evo;
+    private Creature creature = new Creature();
+    private Area area;
+    private ArrayList<Creature> creaturesList;
+    private ArrayList<Creature> capturedList;
+    private Inventory inventory;
+    private Evolution evo;
     private int choice;
 
     // The `public Game(int choice)` constructor is initializing the `Game` object with the provided
@@ -20,9 +21,9 @@ public class Game {
         this.choice = choice;
         this.creaturesList = new ArrayList<>();
         this.capturedList = new ArrayList<>();
-        this.inventory = new InventoryController(capturedList);
-        this.evo = new EvolutionController(capturedList, creaturesList);
-        this.area = new AreaController(capturedList, creaturesList, inventory);
+        this.inventory = new Inventory(capturedList);
+        this.evo = new Evolution(capturedList, creaturesList);
+        this.area = new Area(capturedList, creaturesList, inventory);
     }
 
     // The `public Game(){ }` is a default constructor for the `Game` class. It is an empty constructor
@@ -166,9 +167,9 @@ public class Game {
      * The resetGame function sets all creatures in the creaturesList to be uncaptured and inactive.
      */
     public void resetGame() {
-        List<CreatureController> copyList = new ArrayList<>(capturedList); // Create a copy of the list
+        List<Creature> copyList = new ArrayList<>(capturedList); // Create a copy of the list
 
-        for (CreatureController creature : copyList) {
+        for (Creature creature : copyList) {
             creature.setActive(false);
             creature.setCaptured(false);
             capturedList.remove(creature); // Safely remove from the original list

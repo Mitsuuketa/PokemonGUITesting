@@ -1,4 +1,5 @@
-package MyController;
+package TextGame;
+
 public class ClearScreen {
     /**
      * The function "cls" clears the console screen in Java.
