@@ -1,3 +1,4 @@
+package MyViews;
 import javax.swing.*;
 import java.awt.*;
 
