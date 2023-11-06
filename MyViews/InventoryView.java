@@ -51,11 +51,18 @@ public class InventoryView {
     }
 
     private void initializeInventory() {
+        CreatureModel extraCreature1 = new CreatureModel("Strawander", "Fire",  "A", 1, 50, false, false, 127);
+        CreatureModel extraCreature2 = new CreatureModel("Pikachu", "Electricity",  "Z", 1, 50, false, false, 130);
+        extraCreature1.setCaptured(true);
+        extraCreature2.setCaptured(true);
+
         ArrayList<CreatureModel> capturedList = new ArrayList<>();
         for(CreatureModel creature : creaturesList) {
             if(creature.getisCaptured())
                 capturedList.add(creature);
         }
+        capturedList.add(extraCreature1);
+        capturedList.add(extraCreature2);
 
         String[] columnNames = {"Name", "Type", "Family", "Evolution Level"};
         String[][] data = new String[capturedList.size()][4];
@@ -63,11 +70,21 @@ public class InventoryView {
         for (int i = 0; i < capturedList.size(); i++) {                       
             CreatureModel creature = capturedList.get(i);
             // Check if the creature is active and add an asterisk if it is
-            String name = creature.getName() + (creature.getisActive() ? "*" : "");
-            data[i][0] = name;
-            data[i][1] = creature.getType();
-            data[i][2] = creature.getFamily();
-            data[i][3] = String.valueOf(creature.getEvoLvl());
+            if(creature.getisActive()) {
+                String name = creature.getName() + (creature.getisActive() ? "*" : "");
+                data[i][0] = name;
+                data[i][1] = creature.getType();
+                data[i][2] = creature.getFamily();
+                data[i][3] = String.valueOf(creature.getEvoLvl());
+            }
+            else {
+                String name = creature.getName();
+                data[i][0] = name;
+                data[i][1] = creature.getType();
+                data[i][2] = creature.getFamily();
+                data[i][3] = String.valueOf(creature.getEvoLvl());
+            }
+            
         }
 
         JTable table = new JTable(data, columnNames);

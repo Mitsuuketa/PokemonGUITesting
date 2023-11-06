@@ -3,6 +3,7 @@ import javax.swing.*;
 
 import MyController.GameController;
 import MyModel.*;
+import pokemon.Creature;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -38,13 +39,13 @@ public class ChooseStartersView {
 
         JLabel greetingsPromptLbl = new JLabel();
         greetingsPromptLbl.setText("Choose a starter pokemon!");
-        // // FOR TESTING
+        // //                                                                               FOR TESTING
         // invmodel.initializeCreatures(creaturesList);
         // // 
-        for(CreatureModel creature : creaturesList) {
-            if(creature.getEvoLvl() == 1)
-                System.out.println(creature.getName());
-        }
+        // for(CreatureModel creature : creaturesList) {
+        //     if(creature.getEvoLvl() == 1)
+        //         System.out.println(creature.getName());
+        // }
         // 
         // //  
         constraints.gridx = 0;
@@ -86,7 +87,7 @@ public class ChooseStartersView {
                         // Initialize the selected starter creature
                         selectedStarterCreature.setActive(true);
                         selectedStarterCreature.setCaptured(true);
-                        
+
                         // Perform any additional actions needed
                         gameController.switchToPlayMenu(); // Switch to the play menu or other relevant view
                     }
