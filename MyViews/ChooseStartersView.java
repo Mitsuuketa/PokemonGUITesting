@@ -2,22 +2,19 @@ package MyViews;
 import javax.swing.*;
 
 import MyController.GameController;
+import MyModel.*;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-import pokemon.*;
-
-
 public class ChooseStartersView {
     private JPanel panel;
     private GameController gameController;
     private JComboBox<String> starterComboBox;
-    private ArrayList<Creature> creaturesList;
+    private ArrayList<CreatureModel> creaturesList;
     
-    public ChooseStartersView(GameController gameController, ArrayList<Creature> creaturesList) {
-
+    public ChooseStartersView(GameController gameController, ArrayList<CreatureModel> creaturesList) {
         this.creaturesList = creaturesList;
         this.gameController = gameController;
         this.panel = new JPanel();
@@ -42,11 +39,13 @@ public class ChooseStartersView {
         JLabel greetingsPromptLbl = new JLabel();
         greetingsPromptLbl.setText("Choose a starter pokemon!");
         // // FOR TESTING
-        // InventoryModel invmodel = new InventoryModel();
         // invmodel.initializeCreatures(creaturesList);
         // // 
-        for(int i = 0; i < creaturesList.size();i++) 
-            System.out.println(creaturesList.get(i).getName());
+        for(CreatureModel creature : creaturesList) {
+            if(creature.getEvoLvl() == 1)
+                System.out.println(creature.getName());
+        }
+        // 
         // //  
         constraints.gridx = 0;
         constraints.gridy = 0;
@@ -65,7 +64,7 @@ public class ChooseStartersView {
         starterComboBox = new JComboBox<>();
     
         // Populate the combo box with starter Pokémon names
-        for (Creature creature : creaturesList) {
+        for (CreatureModel creature : creaturesList) {
             if (creature.getEvoLvl() == 1) {
                 starterComboBox.addItem(creature.getName());
             }
@@ -81,7 +80,7 @@ public class ChooseStartersView {
                 String selectedStarterName = (String) starterComboBox.getSelectedItem();
                 if (selectedStarterName != null) {
                     // Find the selected starter creature by name
-                    Creature selectedStarterCreature = findStarterCreatureByName(selectedStarterName, creaturesList);
+                    CreatureModel selectedStarterCreature = findStarterCreatureByName(selectedStarterName, creaturesList);
     
                     if (selectedStarterCreature != null) {
                         // Initialize the selected starter creature
@@ -119,8 +118,8 @@ public class ChooseStartersView {
         panel.add(btn4, BorderLayout.SOUTH);
     }
 
-    public Creature findStarterCreatureByName(String name, ArrayList<Creature> creaturesList) {
-        for (Creature creature : creaturesList) {
+    public CreatureModel findStarterCreatureByName(String name, ArrayList<CreatureModel> creaturesList) {
+        for (CreatureModel creature : creaturesList) {
             if (creature.getName().equals(name) && creature.getEvoLvl() == 1) {
                 return creature; // Found a matching starter creature
             }

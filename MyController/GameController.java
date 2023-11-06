@@ -2,14 +2,13 @@ package MyController;
 
 import java.util.ArrayList;
 
-import MyModel.InventoryModel;
+import MyModel.CreatureModel;
 import MyViews.*;
-import pokemon.Creature;
 
 
 public class GameController {
     private MainView mainView;
-    private ArrayList<Creature> creaturesList;
+    private ArrayList<CreatureModel> creaturesList;
     
     public GameController() {
         mainView = new MainView(this);
@@ -17,8 +16,8 @@ public class GameController {
     }
 
     public void switchtoChooseStarterMenu() {
-        InventoryModel invModel = new InventoryModel();
-        invModel.initializeCreatures(creaturesList);
+        CreatureModel creature = new CreatureModel();
+        creature.initializeCreatures(creaturesList);
         ChooseStartersView csv = new ChooseStartersView(this, creaturesList);
         mainView.switchToNewPanel(csv.getPanel());
     }
