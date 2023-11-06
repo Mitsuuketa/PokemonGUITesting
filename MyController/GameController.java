@@ -23,7 +23,7 @@ public class GameController {
     }
 
     public void switchtoEvolveMenu() {
-        EvolveView evolve = new EvolveView(this);
+        EvolveView evolve = new EvolveView(this, creaturesList);
         mainView.switchToNewPanel(evolve.getPanel());
     }
 
@@ -43,7 +43,7 @@ public class GameController {
         mainView.switchToNewPanel(playMenu.getPanel());
     }
     public void switchToInventoryMenu() {
-        InventoryView inventoryView = new InventoryView(this);
+        InventoryView inventoryView = new InventoryView(this, creaturesList);
         mainView.switchToNewPanel(inventoryView.getPanel());
     }
 

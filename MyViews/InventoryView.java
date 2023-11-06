@@ -14,8 +14,8 @@ public class InventoryView {
     private GameController gameController;
     private ArrayList<CreatureModel> creaturesList;
     
-    public InventoryView(GameController gameController) {
-        this.creaturesList = new ArrayList<>();
+    public InventoryView(GameController gameController, ArrayList<CreatureModel> creaturesList) {
+        this.creaturesList = creaturesList;
         this.gameController = gameController;
         this.panel = new JPanel();
         panel.setLayout(new BorderLayout()); // Use BorderLayout for the main panel
@@ -42,23 +42,20 @@ public class InventoryView {
         constraints.gridwidth = 2;
         greetingsPanel.add(greetingsPromptLbl, constraints);
 
-        for(CreatureModel creature : creaturesList) {                                            // TESTING PURPOSES
-            if(creature.getisCaptured())
-                System.out.println(creature.getName());
-        }
+        // for(CreatureModel creature : creaturesList) {                                            // TESTING PURPOSES
+        //     if(creature.getisCaptured() == true)
+        //         System.out.println(creature.getName());
+        // }
 
-        // Add the greetings panel to the main panel (panel)
         panel.add(greetingsPanel, BorderLayout.NORTH);
     }
 
     private void initializeInventory() {
-        // Initialize your captured creatures list from the InventoryModel
         ArrayList<CreatureModel> capturedList = new ArrayList<>();
-        for(CreatureModel creature : capturedList) {
+        for(CreatureModel creature : creaturesList) {
             if(creature.getisCaptured())
                 capturedList.add(creature);
         }
-        
 
         String[] columnNames = {"Name", "Type", "Family", "Evolution Level"};
         String[][] data = new String[capturedList.size()][4];

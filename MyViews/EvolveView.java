@@ -2,17 +2,21 @@ package MyViews;
 import javax.swing.*;
 
 import MyController.GameController;
+import MyModel.CreatureModel;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class EvolveView {
 
     private JPanel panel;
     private JComboBox<String> creatureComboBox;
     private GameController gameController;
+    private ArrayList<CreatureModel> creatureList;
     
-    public EvolveView(GameController gameController) {
+    public EvolveView(GameController gameController, ArrayList<CreatureModel> creatureList) {
+        this.creatureList = creatureList;
         this.gameController = gameController;
         this.panel = new JPanel();
         panel.setLayout(new BorderLayout()); // Use BorderLayout for the main panel
@@ -33,7 +37,6 @@ public class EvolveView {
         constraints.insets = new Insets(5, 5, 5, 5);
 
         JLabel greetingsPromptLbl = new JLabel("Welcome to the Evolution Center!");
-        greetingsPromptLbl.setText("Welcome to the Evolution Center!");
         constraints.gridx = 0;
         constraints.gridy = 0;
         constraints.gridwidth = 2;

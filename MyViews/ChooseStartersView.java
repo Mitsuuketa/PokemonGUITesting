@@ -86,7 +86,7 @@ public class ChooseStartersView {
                         // Initialize the selected starter creature
                         selectedStarterCreature.setActive(true);
                         selectedStarterCreature.setCaptured(true);
-    
+                        
                         // Perform any additional actions needed
                         gameController.switchToPlayMenu(); // Switch to the play menu or other relevant view
                     }
