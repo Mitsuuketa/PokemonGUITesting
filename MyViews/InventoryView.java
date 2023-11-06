@@ -2,14 +2,18 @@ package MyViews;
 import javax.swing.*;
 
 import MyController.GameController;
+import MyModel.InventoryModel;
+import pokemon.Creature;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class InventoryView {
     private JPanel panel;
     private JComboBox<String> creatureComboBox;
     private GameController gameController;
+    private InventoryModel invModel = new InventoryModel();
     
     public InventoryView(GameController gameController) {
         this.gameController = gameController;
@@ -44,26 +48,28 @@ public class InventoryView {
     }
 
     private void initializeInventory() {
-        // Hard-coded Pokémon data
-        String[] pokemonNames = {"Pikachu", "Bulbasaur", "Charmander"};
+        // Initialize your captured creatures list from the InventoryModel
+        ArrayList<Creature> capturedCreatures = invModel.getCaptured();
 
         String[] columnNames = {"Name", "Type", "Family", "Evolution Level"};
-        String[][] data = {
-            {"Pikachu", "Electric", "Mouse", "1"},
-            {"Bulbasaur", "Grass/Poison", "Seed", "1"},
-            {"Charmander", "Fire", "Lizard", "1"}
-        };
+        String[][] data = new String[capturedCreatures.size()][4];
+
+        for (int i = 0; i < capturedCreatures.size(); i++) {
+            Creature creature = capturedCreatures.get(i);
+            // Check if the creature is active and add an asterisk if it is
+            String name = invModel.getName() + (invModel.getisActive() ? "*" : "");
+            data[i][0] = name;
+            data[i][1] = creature.getType();
+            data[i][2] = creature.getFamily();
+            data[i][3] = String.valueOf(creature.getEvoLvl());
+        }
 
         JTable table = new JTable(data, columnNames);
-        // table.setFillsViewportHeight(true);
         JScrollPane scrollPane = new JScrollPane(table);
 
-        // panel.setLayout(new BorderLayout());
-        // panel.add(scrollPane, BorderLayout.CENTER);
+        creatureComboBox = new JComboBox<>(capturedCreatures.stream().map(Creature::getName).toArray(String[]::new));
 
-        creatureComboBox = new JComboBox<>(pokemonNames);
-
-        JPanel bottomPanel = new JPanel(new GridLayout(2,1));
+        JPanel bottomPanel = new JPanel(new GridLayout(2, 1));
         JLabel activePkmnLbl = new JLabel();
         activePkmnLbl.setText("Active Pokemon: ");
         bottomPanel.add(activePkmnLbl);
@@ -73,8 +79,12 @@ public class InventoryView {
         creatureComboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                /*String selectedPokemon = (String) */ creatureComboBox.getSelectedItem();
+                String selectedPokemon = (String) creatureComboBox.getSelectedItem();
                 // Update the active creature or perform other actions as needed
+                for(Creature creature : capturedCreatures) {
+                    if(creature.getName().equalsIgnoreCase(selectedPokemon))
+                        creature.setActive(true);
+                }
             }
         });
 
@@ -91,6 +101,5 @@ public class InventoryView {
 
         panel.add(scrollPane, BorderLayout.CENTER); // Add the JTable in the center
         panel.add(bottomPanel, BorderLayout.SOUTH); // Add the combo box and exit button at the bottom
-        
-    }
+    }   
 }

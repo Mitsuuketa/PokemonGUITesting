@@ -9,14 +9,14 @@ public class MainView {
 
     private JFrame mainFrame;
     private JPanel currentPanel;
-    private GameController gameController;
+    // private GameController gameController;
     
     public MainView(GameController gameController) {
         this.mainFrame = new JFrame("Pokemon Sweets");
         this.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.mainFrame.setLayout(new FlowLayout());
         this.mainFrame.setSize(500, 550);
-        this.gameController = gameController;
+        // this.gameController = gameController;
 
         StartView startMenu = new StartView(gameController);
         currentPanel = startMenu.getPanel();

@@ -1,6 +1,5 @@
 package MyViews;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 
 import MyController.GameController;
 
@@ -8,7 +7,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-import MyModel.InventoryModel;
 import pokemon.*;
 
 
@@ -76,11 +74,6 @@ public class ChooseStartersView {
         // Create a button to confirm the selection
         JButton chooseButton = new JButton("Choose");
     
-        // Create a JTable to display the starter Pokémon information
-        String[] columnNames = {"Name", "Type", "Family", "Level"};
-        DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
-        JTable starterTable = new JTable(tableModel);
-    
         // Add an action listener to the button
         chooseButton.addActionListener(new ActionListener() {
             @Override
@@ -95,15 +88,6 @@ public class ChooseStartersView {
                         selectedStarterCreature.setActive(true);
                         selectedStarterCreature.setCaptured(true);
     
-                        // Add the selected starter to the table
-                        Object[] rowData = {
-                            selectedStarterCreature.getName(),
-                            selectedStarterCreature.getType(),
-                            selectedStarterCreature.getFamily(),
-                            selectedStarterCreature.getEvoLvl()
-                        };
-                        tableModel.addRow(rowData);
-    
                         // Perform any additional actions needed
                         gameController.switchToPlayMenu(); // Switch to the play menu or other relevant view
                     }
@@ -116,13 +100,9 @@ public class ChooseStartersView {
         comboBoxButtonPanel.add(starterComboBox);
         comboBoxButtonPanel.add(chooseButton);
     
-        // Create a JScrollPane for the JTable
-        JScrollPane tableScrollPane = new JScrollPane(starterTable);
-    
         // Add components to the selectStarterPanel
         selectStarterPanel.add(starterLabel, BorderLayout.NORTH);
         selectStarterPanel.add(comboBoxButtonPanel, BorderLayout.CENTER);
-        selectStarterPanel.add(tableScrollPane, BorderLayout.SOUTH);
     
         // Add the selectStarterPanel to the main panel
         panel.add(selectStarterPanel, BorderLayout.CENTER);
