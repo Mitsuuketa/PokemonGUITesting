@@ -51,6 +51,7 @@ public class InventoryView {
     }
 
     private void initializeInventory() {
+        //                              FOR TESTING
         CreatureModel extraCreature1 = new CreatureModel("Strawander", "Fire",  "A", 1, 50, false, false, 127);
         CreatureModel extraCreature2 = new CreatureModel("Pikachu", "Electricity",  "Z", 1, 50, false, false, 130);
         extraCreature1.setCaptured(true);
