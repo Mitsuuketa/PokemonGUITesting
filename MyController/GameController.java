@@ -9,21 +9,23 @@ import MyViews.*;
 public class GameController {
     private MainView mainView;
     private ArrayList<CreatureModel> creaturesList;
+    private ArrayList<CreatureModel> capturedList;
     
     public GameController() {
         mainView = new MainView(this);
         this.creaturesList = new ArrayList<>();
+        this.capturedList = new ArrayList<>();
     }
 
     public void switchtoChooseStarterMenu() {
         CreatureModel creature = new CreatureModel();
         creature.initializeCreatures(creaturesList);
-        ChooseStartersView csv = new ChooseStartersView(this, creaturesList);
+        ChooseStartersView csv = new ChooseStartersView(this, creaturesList, capturedList);
         mainView.switchToNewPanel(csv.getPanel());
     }
 
     public void switchtoEvolveMenu() {
-        EvolveView evolve = new EvolveView(this, creaturesList);
+        EvolveView evolve = new EvolveView(this, capturedList);
         mainView.switchToNewPanel(evolve.getPanel());
     }
 
@@ -39,11 +41,11 @@ public class GameController {
 
     public void switchToPlayMenu() {
         // Create a new PlayMenu and switch the content of the main frame
-        PlayView playMenu = new PlayView(this);
+        PlayView playMenu = new PlayView(this, capturedList);
         mainView.switchToNewPanel(playMenu.getPanel());
     }
     public void switchToInventoryMenu() {
-        InventoryView inventoryView = new InventoryView(this, creaturesList);
+        InventoryView inventoryView = new InventoryView(this, capturedList);
         mainView.switchToNewPanel(inventoryView.getPanel());
     }
 

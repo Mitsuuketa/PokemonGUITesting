@@ -1,5 +1,6 @@
 package MyViews;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 import MyModel.*;
 import MyController.GameController;
@@ -9,15 +10,17 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 public class InventoryView {
-    private JPanel panel;
-    private JComboBox<String> creatureComboBox;
-    private GameController gameController;
-    private ArrayList<CreatureModel> creaturesList;
+    protected JPanel panel;
+    protected JTable table;
+    protected JComboBox<String> creatureComboBox;
+    protected GameController gameController;
+    protected ArrayList<CreatureModel> capturedList;
     
-    public InventoryView(GameController gameController, ArrayList<CreatureModel> creaturesList) {
-        this.creaturesList = creaturesList;
+    public InventoryView(GameController gameController, ArrayList<CreatureModel> capturedList) {
+        this.capturedList = capturedList;
         this.gameController = gameController;
         this.panel = new JPanel();
+        this.table = new JTable();
         panel.setLayout(new BorderLayout()); // Use BorderLayout for the main panel
         initializeInvMenuGreetings();
         initializeInventory();
@@ -50,22 +53,7 @@ public class InventoryView {
         panel.add(greetingsPanel, BorderLayout.NORTH);
     }
 
-    private void initializeInventory() {
-        //                                                                                                       FOR TESTING
-        CreatureModel extraCreature1 = new CreatureModel("Strawander", "Fire",  "A", 1, 50, false, false, 127);
-        CreatureModel extraCreature2 = new CreatureModel("Pikachu", "Electricity",  "Z", 1, 50, false, false, 130);
-        extraCreature1.setCaptured(true);
-        extraCreature2.setCaptured(true);
-
-        ArrayList<CreatureModel> capturedList = new ArrayList<>();
-        for(CreatureModel creature : creaturesList) {
-            if(creature.getisCaptured())
-                capturedList.add(creature);
-        }
-        //                                                                                                      FOR TESTING
-        capturedList.add(extraCreature1);
-        capturedList.add(extraCreature2);
-
+    protected void initializeInventory() {
         String[] columnNames = {"Name", "Type", "Family", "Evolution Level"};
         String[][] data = new String[capturedList.size()][4];
 
@@ -89,7 +77,8 @@ public class InventoryView {
             
         }
 
-        JTable table = new JTable(data, columnNames);
+        table = new JTable(data, columnNames);
+        
         JScrollPane scrollPane = new JScrollPane(table);
 
         creatureComboBox = new JComboBox<>(capturedList.stream().map(CreatureModel::getName).toArray(String[]::new));
@@ -107,9 +96,13 @@ public class InventoryView {
                 String selectedPokemon = (String) creatureComboBox.getSelectedItem();
                 // Update the active creature or perform other actions as needed
                 for(CreatureModel creature : capturedList) {
-                    if(creature.getName().equalsIgnoreCase(selectedPokemon))
+                    if(creature.getName().equalsIgnoreCase(selectedPokemon)) {
                         creature.setActive(true);
+                    }
+                    else
+                        creature.setActive(false);
                 }
+                refreshInventoryTable();
             }
         });
 
@@ -126,5 +119,24 @@ public class InventoryView {
 
         panel.add(scrollPane, BorderLayout.CENTER); // Add the JTable in the center
         panel.add(bottomPanel, BorderLayout.SOUTH); // Add the combo box and exit button at the bottom
-    }   
+    }
+
+    public void refreshInventoryTable() {
+        String[] columnNames = {"Name", "Type", "Family", "Evolution Level"};
+        String[][] data = new String[capturedList.size()][4];
+
+        for (int i = 0; i < capturedList.size(); i++) {
+            CreatureModel creature = capturedList.get(i);
+            String name = creature.getName() + (creature.getisActive() ? "*" : "");
+            data[i][0] = name;
+            data[i][1] = creature.getType();
+            data[i][2] = creature.getFamily();
+            data[i][3] = String.valueOf(creature.getEvoLvl());
+        }
+
+        DefaultTableModel tableModel = new DefaultTableModel(data, columnNames);
+        table = new JTable(tableModel);
+        tableModel.setDataVector(data, columnNames);
+    }
 }
+ 

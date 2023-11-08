@@ -2,17 +2,21 @@ package MyViews;
 import javax.swing.*;
 
 import MyController.GameController;
+import MyModel.CreatureModel;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class PlayView {
 
     private JPanel panel;
     private GameController gameController;
+    private ArrayList<CreatureModel> capturedList;
 
-    public PlayView(GameController gameController) {
+    public PlayView(GameController gameController, ArrayList<CreatureModel> capturedList) {
+        this.capturedList = capturedList;
         this.gameController = gameController;
         this.panel = new JPanel();
         initializePlayMenuGreetings();
@@ -77,7 +81,17 @@ public class PlayView {
         btn4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameController.switchtoStartMenu();
+                int choice = JOptionPane.showConfirmDialog(panel, "Are you sure?", "Exit Confirmation", JOptionPane.YES_NO_OPTION);
+                if (choice == JOptionPane.YES_OPTION) {
+                    ArrayList<CreatureModel> creaturesToRemove = new ArrayList<>();
+                    for (CreatureModel creature : capturedList) {
+                        creature.setActive(false);
+                        creature.setCaptured(false);
+                        creaturesToRemove.add(creature);
+                    }
+                    capturedList.removeAll(creaturesToRemove);
+                    gameController.switchtoStartMenu();
+                }
             }
         });
         constraints.gridy = 5;

@@ -13,9 +13,11 @@ public class ChooseStartersView {
     private GameController gameController;
     private JComboBox<String> starterComboBox;
     private ArrayList<CreatureModel> creaturesList;
+    private ArrayList<CreatureModel> capturedList;
     
-    public ChooseStartersView(GameController gameController, ArrayList<CreatureModel> creaturesList) {
+    public ChooseStartersView(GameController gameController, ArrayList<CreatureModel> creaturesList, ArrayList<CreatureModel> capturedList) {
         this.creaturesList = creaturesList;
+        this.capturedList = capturedList;
         this.gameController = gameController;
         this.panel = new JPanel();
         panel.setLayout(new BorderLayout()); // Use BorderLayout for the main panel
@@ -86,6 +88,18 @@ public class ChooseStartersView {
                         // Initialize the selected starter creature
                         selectedStarterCreature.setActive(true);
                         selectedStarterCreature.setCaptured(true);
+                        capturedList.add(selectedStarterCreature);
+
+                        //                                FOR TESTING
+                        CreatureModel extraCreature1 = new CreatureModel("Strawander", "Fire",  "A", 1, 50, false, false, 127);
+                        CreatureModel extraCreature2 = new CreatureModel("Pikachu", "Electricity",  "P", 1, 50, false, false, 130);
+                        extraCreature1.setCaptured(true);
+                        extraCreature2.setCaptured(true);
+
+                        //                                FOR TESTING
+                        capturedList.add(extraCreature1);
+                        capturedList.add(extraCreature2);
+
 
                         // Perform any additional actions needed
                         gameController.switchToPlayMenu(); // Switch to the play menu or other relevant view

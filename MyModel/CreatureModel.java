@@ -76,6 +76,7 @@ public class CreatureModel {
         return isCaptured;
     }
 
+    
 
     public void initializeCreatures(ArrayList<CreatureModel> creaturesList) {
         creaturesList.add(new CreatureModel("Strawander", "Fire",  "A", 1, 50, false, false, 1));
