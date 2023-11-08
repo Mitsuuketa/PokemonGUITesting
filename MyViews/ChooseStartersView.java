@@ -3,7 +3,6 @@ import javax.swing.*;
 
 import MyController.GameController;
 import MyModel.*;
-import pokemon.Creature;
 
 import java.awt.*;
 import java.awt.event.*;
