@@ -106,10 +106,14 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 public class EvolveView extends InventoryView{
-    public EvolveView(GameController gameController, ArrayList<CreatureModel> capturedList) {
+    protected ArrayList<CreatureModel> creaturesList;
+
+    public EvolveView(GameController gameController, ArrayList<CreatureModel> capturedList, ArrayList<CreatureModel> creaturesList) {
         super(gameController, capturedList);
-        
+        this.creaturesList = creaturesList;
     }
+
+    
     
     @Override
     protected void initializeInventory() {
@@ -163,11 +167,23 @@ public class EvolveView extends InventoryView{
                                         "Creature: " + creature.getName() + " " + creature.getID());
 
                                 capturedList.remove(creature);
-                                capturedList.remove(selectedCreature);
+                                creature.setActive(false);
+                                creature.setCaptured(false);
 
-                                
-                                
-                                
+                                capturedList.remove(selectedCreature);
+                                selectedCreature.setActive(false);
+                                selectedCreature.setCaptured(false);
+
+                                for(CreatureModel nextLvlCreature : creaturesList) {
+                                    nextLvlCreature.setActive(false);
+
+                                    if(selectedCreature.getFamily() == nextLvlCreature.getFamily() &&
+                                        selectedCreature.getEvoLvl() + 1 == nextLvlCreature.getEvoLvl()) {
+                                            capturedList.add(nextLvlCreature);
+                                            nextLvlCreature.setCaptured(false);
+                                            nextLvlCreature.setActive(true);
+                                        }
+                                }
                                 refreshInventoryTable();
                                 return; 
                             }

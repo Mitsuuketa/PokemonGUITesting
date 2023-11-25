@@ -25,7 +25,7 @@ public class GameController {
     }
 
     public void switchtoEvolveMenu() {
-        EvolveView evolve = new EvolveView(this, capturedList);
+        EvolveView evolve = new EvolveView(this, capturedList, creaturesList);
         mainView.switchToNewPanel(evolve.getPanel());
     }
 
