@@ -106,9 +106,9 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 public class EvolveView extends InventoryView{
-
     public EvolveView(GameController gameController, ArrayList<CreatureModel> capturedList) {
         super(gameController, capturedList);
+        
     }
     
     @Override
@@ -148,23 +148,34 @@ public class EvolveView extends InventoryView{
         bottomPanel.add(activePkmnLbl);
         bottomPanel.add(creatureComboBox);
 
-        JButton evolveButton = new JButton("Evolve"); // Add this button
+        JButton evolveButton = new JButton("Evolve"); 
         evolveButton.setFocusable(false);
         evolveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selectedCreatureName = (String) creatureComboBox.getSelectedItem();
+            
+                for (CreatureModel selectedCreature : capturedList) {
+                    if (selectedCreature.getName().equalsIgnoreCase(selectedCreatureName)) {
+                        for (CreatureModel creature : capturedList) {
+                            if (creature.getName().equalsIgnoreCase(selectedCreatureName) && creature.getID() != selectedCreature.getID()) {
+                                System.out.println("Selected: " + selectedCreature.getName() + " " + selectedCreature.getID() + "\n" +
+                                        "Creature: " + creature.getName() + " " + creature.getID());
 
-                for (CreatureModel creature : capturedList) {
-                    if (creature.getName().equalsIgnoreCase(selectedCreatureName)) {
-                        // Implement the evolution logic here
-                        // ...
-                        // If successful, you can remove the original creature
-                        capturedList.remove(creature);
-                        refreshInventoryTable(); // Update the table after evolution
-                    } else {
-                        // Display a warning message when there's no similar creature to evolve
+                                capturedList.remove(creature);
+                                capturedList.remove(selectedCreature);
+
+                                
+                                
+                                
+                                refreshInventoryTable();
+                                return; 
+                            }
+                        }
+            
+                        // If no similar creature is found
                         JOptionPane.showMessageDialog(panel, "There is no similar creature that can be evolved!", "Warning", JOptionPane.WARNING_MESSAGE);
+                        break; // Break the loop after handling the selected creature
                     }
                 }
             }

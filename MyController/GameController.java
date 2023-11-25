@@ -40,7 +40,6 @@ public class GameController {
     }
 
     public void switchToPlayMenu() {
-        // Create a new PlayMenu and switch the content of the main frame
         PlayView playMenu = new PlayView(this, capturedList);
         mainView.switchToNewPanel(playMenu.getPanel());
     }
