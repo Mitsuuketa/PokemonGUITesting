@@ -86,12 +86,14 @@ public class ChooseStartersView {
                         //                                FOR TESTING
                         CreatureModel extraCreature1 = new CreatureModel("Strawander", "Fire",  "A", 1, 50, false, false, 127);
                         CreatureModel extraCreature2 = new CreatureModel("Pikachu", "Electricity",  "P", 1, 50, false, false, 130);
+                        CreatureModel extraCreature3 = new CreatureModel("Strawleon", "Fire",  "A", 2, 150, false, false, 190);
                         extraCreature1.setCaptured(true);
                         extraCreature2.setCaptured(true);
 
                         //                                FOR TESTING
                         capturedList.add(extraCreature1);
                         capturedList.add(extraCreature2);
+                        capturedList.add(extraCreature3);
 
                         gameController.switchToPlayMenu(); // Switch to the play menu or other relevant view
                     }

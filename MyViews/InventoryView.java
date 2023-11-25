@@ -121,22 +121,22 @@ public class InventoryView {
         panel.add(bottomPanel, BorderLayout.SOUTH); // Add the combo box and exit button at the bottom
     }
 
-    public void refreshInventoryTable() {
+    protected void refreshInventoryTable() {
         String[] columnNames = {"Name", "Type", "Family", "Evolution Level"};
         String[][] data = new String[capturedList.size()][4];
-
+    
         for (int i = 0; i < capturedList.size(); i++) {
             CreatureModel creature = capturedList.get(i);
-            String name = creature.getName() + (creature.getisActive() ? "*" : "");
+            String name = creature.getName() + (creature.getisActive() ? " *" : "");
             data[i][0] = name;
             data[i][1] = creature.getType();
             data[i][2] = creature.getFamily();
             data[i][3] = String.valueOf(creature.getEvoLvl());
         }
-
-        DefaultTableModel tableModel = new DefaultTableModel(data, columnNames);
-        table = new JTable(tableModel);
-        tableModel.setDataVector(data, columnNames);
+    
+        DefaultTableModel newModel = new DefaultTableModel(data, columnNames);
+        table.setModel(newModel);
+        newModel.fireTableDataChanged(); 
     }
 }
  
