@@ -7,6 +7,7 @@ import MyController.GameController;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 public class AreaView {
 
@@ -145,10 +146,23 @@ public class AreaView {
             currentPlayerRow = newRow;
             currentPlayerCol = newCol;
             tiles[currentPlayerRow][currentPlayerCol].setBackground(Color.GREEN);
+
+            if(creatureEncounter()) {
+                gameController.switchtoBattleView();
+            }
         }
     }
 
     private boolean isValidMove(int row, int col) {
         return row >= 0 && row < numRows && col >= 0 && col < numCols;
+    }
+
+    private boolean creatureEncounter() {
+        Random rand = new Random();
+        int chance = rand.nextInt(1,100);
+
+        if(chance <= 40)
+            return true;
+        return false;
     }
 }

@@ -117,8 +117,8 @@ public class InventoryView {
 
         bottomPanel.add(exitBtn);
 
-        panel.add(scrollPane, BorderLayout.CENTER); // Add the JTable in the center
-        panel.add(bottomPanel, BorderLayout.SOUTH); // Add the combo box and exit button at the bottom
+        panel.add(scrollPane, BorderLayout.CENTER);
+        panel.add(bottomPanel, BorderLayout.SOUTH);
     }
 
     protected void refreshInventoryTable() {
