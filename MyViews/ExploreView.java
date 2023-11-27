@@ -39,8 +39,11 @@ public class ExploreView {
         btn1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JLabel greetingsLbl = new JLabel();
-                greetingsLbl.setText("Area 1");
+                AreaView area1 = new AreaView(5, 1, gameController);
+                panel.removeAll();
+                panel.add(area1.getPanel());
+                panel.revalidate();
+                panel.repaint();
             }
         });
         constraints.gridy = 2;
@@ -51,8 +54,11 @@ public class ExploreView {
         btn2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JLabel greetingsLbl = new JLabel();
-                greetingsLbl.setText("Area 2");
+                AreaView area2 = new AreaView(3, 3, gameController);
+                panel.removeAll();
+                panel.add(area2.getPanel());
+                panel.revalidate();
+                panel.repaint();
             }
         });
         constraints.gridy = 3;
@@ -63,8 +69,11 @@ public class ExploreView {
         btn3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JLabel greetingsLbl = new JLabel();
-                greetingsLbl.setText("Area 3");
+                AreaView area3 = new AreaView(4, 4, gameController);
+                panel.removeAll();
+                panel.add(area3.getPanel());
+                panel.revalidate();
+                panel.repaint(); 
             }
         });
         constraints.gridy = 4;
@@ -81,4 +90,5 @@ public class ExploreView {
         constraints.gridy = 5;
         panel.add(btn4, constraints);
     }
+   
 }

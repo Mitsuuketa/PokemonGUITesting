@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import MyModel.CreatureModel;
 import MyViews.*;
 
-
 public class GameController {
     private MainView mainView;
     private ArrayList<CreatureModel> creaturesList;
@@ -48,7 +47,5 @@ public class GameController {
         InventoryView inventoryView = new InventoryView(this, capturedList);
         mainView.switchToNewPanel(inventoryView.getPanel());
     }
-
-    
     
 }
