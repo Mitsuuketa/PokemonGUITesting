@@ -14,9 +14,8 @@ public class GameModel {
         Random random = new Random();
         int newID;
 
-        // Generate a random ID until it's unique
         do {
-            newID = random.nextInt(1000); // Adjust the range as needed
+            newID = random.nextInt(1000);
         } while (!isIDInUse(newID));
 
         return newID;
@@ -25,9 +24,9 @@ public class GameModel {
     public boolean isIDInUse(int id) {
         for (CreatureModel creature : capturedList) {
             if (creature.getID() == id) {
-                return false; // ID is already in use
+                return false; 
             }
         }
-        return true; // ID is unique
+        return true; 
     }
 }

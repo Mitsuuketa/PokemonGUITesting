@@ -17,8 +17,6 @@ public class EvolveView extends InventoryView{
         this.creaturesList = creaturesList;
     }
 
-    
-    
     @Override
     protected void initializeInventory() {
         String[] columnNames = {"Name", "Type", "Family", "Evolution Level"};
@@ -26,7 +24,6 @@ public class EvolveView extends InventoryView{
 
         for (int i = 0; i < capturedList.size(); i++) {                       
             CreatureModel creature = capturedList.get(i);
-            // Check if the creature is active and add an asterisk if it is
             if(creature.getisActive()) {
                 String name = creature.getName() + (creature.getisActive() ? "*" : "");
                 data[i][0] = name;
@@ -143,7 +140,6 @@ public class EvolveView extends InventoryView{
         table.setModel(tableModel);
         tableModel.fireTableDataChanged(); 
 
-        // Update the JComboBox
         creatureComboBox.setModel(new DefaultComboBoxModel<>(capturedList.stream().map(CreatureModel::getName).toArray(String[]::new)));
         creatureComboBox.setSelectedItem(null); 
     }

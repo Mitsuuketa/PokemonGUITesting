@@ -23,9 +23,6 @@ public class CreatureModel {
         this.id = id;
     }
 
-    // The `public Creature() { }` is a default constructor for the `Creature` class. It is an empty
-    // constructor that does not take any parameters. This constructor is used when a new `Creature`
-    // object is created without specifying any attributes.
     public CreatureModel() { }
 
     public void setActive(boolean active) {
@@ -75,8 +72,6 @@ public class CreatureModel {
     public boolean getisCaptured() {
         return isCaptured;
     }
-
-    
 
     public void initializeCreatures(ArrayList<CreatureModel> creaturesList) {
         creaturesList.add(new CreatureModel("Strawander", "Fire",  "A", 1, 50, false, false, 1));

@@ -21,7 +21,7 @@ public class InventoryView {
         this.gameController = gameController;
         this.panel = new JPanel();
         this.table = new JTable();
-        panel.setLayout(new BorderLayout()); // Use BorderLayout for the main panel
+        panel.setLayout(new BorderLayout()); 
         initializeInvMenuGreetings();
         initializeInventory();
     }
@@ -31,7 +31,7 @@ public class InventoryView {
     }
 
     private void initializeInvMenuGreetings() {
-        JPanel greetingsPanel = new JPanel(); // Create a separate panel for greetings
+        JPanel greetingsPanel = new JPanel(); 
         greetingsPanel.setLayout(new GridBagLayout());
 
         GridBagConstraints constraints = new GridBagConstraints();
@@ -59,7 +59,6 @@ public class InventoryView {
 
         for (int i = 0; i < capturedList.size(); i++) {                       
             CreatureModel creature = capturedList.get(i);
-            // Check if the creature is active and add an asterisk if it is
             if(creature.getisActive()) {
                 String name = creature.getName() + (creature.getisActive() ? "*" : "");
                 data[i][0] = name;
@@ -89,12 +88,10 @@ public class InventoryView {
         bottomPanel.add(activePkmnLbl);
         bottomPanel.add(creatureComboBox);
 
-        // Change the active creature when selecting a different one
         creatureComboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selectedPokemon = (String) creatureComboBox.getSelectedItem();
-                // Update the active creature or perform other actions as needed
                 for(CreatureModel creature : capturedList) {
                     if(creature.getName().equalsIgnoreCase(selectedPokemon)) {
                         creature.setActive(true);

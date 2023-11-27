@@ -95,7 +95,7 @@ public class ChooseStartersView {
                         capturedList.add(extraCreature2);
                         capturedList.add(extraCreature3);
 
-                        gameController.switchToPlayMenu(); // Switch to the play menu or other relevant view
+                        gameController.switchToPlayMenu();
                     }
                 }
             }
