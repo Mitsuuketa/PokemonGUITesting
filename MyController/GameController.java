@@ -43,6 +43,7 @@ public class GameController {
         PlayView playMenu = new PlayView(this, capturedList);
         mainView.switchToNewPanel(playMenu.getPanel());
     }
+    
     public void switchToInventoryMenu() {
         InventoryView inventoryView = new InventoryView(this, capturedList);
         mainView.switchToNewPanel(inventoryView.getPanel());
