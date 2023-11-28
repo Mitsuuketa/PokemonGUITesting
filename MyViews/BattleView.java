@@ -15,7 +15,12 @@ public class BattleView {
     private JPanel playerTextPanel;
     private JPanel enemyImagePanel;
     private JPanel playerImagePanel;
+    private JLabel playerHealthLabel; 
+    private JLabel enemyHealthLabel; 
+    private JPanel actionPanel; 
+
     private GameController gameController;
+ 
 
     public BattleView(GameController gameController) {
         initializeBattleView();
@@ -32,6 +37,8 @@ public class BattleView {
 
         createEnemyTextPanel();
         createPlayerTextPanel();
+        createHealthLabels();
+        createActionButtonPanel();
 
         JPanel imagePanelsContainer = new JPanel(new GridBagLayout());
 
@@ -50,6 +57,71 @@ public class BattleView {
 
         panel.add(imagePanelsContainer, BorderLayout.CENTER);
     }
+
+    private void createHealthLabels() {
+        playerHealthLabel = new JLabel("'s Health: ");
+        playerHealthLabel.setForeground(Color.GREEN);
+        playerHealthLabel.setHorizontalAlignment(SwingConstants.LEFT);
+
+        enemyHealthLabel = new JLabel("Enemy's Health: 50");
+        enemyHealthLabel.setForeground(Color.RED);
+        enemyHealthLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+    }
+
+    private void createActionButtonPanel() {
+        actionPanel = new JPanel(new GridLayout(4, 1)); // Adjust rows according to the number of actions
+
+        JButton attackButton = new JButton("Attack");
+        JButton swapButton = new JButton("Swap");
+        JButton catchButton = new JButton("Catch");
+        JButton runButton = new JButton("Run");
+
+        attackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+             
+                updateHealthLabels(); // Update health labels after attack
+            }
+        });
+
+        swapButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+     
+                gameController.swapCreature(); 
+            }
+        });
+
+        catchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               
+            }
+        });
+
+        runButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+            actionPanel.add(attackButton);
+            actionPanel.add(swapButton);
+            actionPanel.add(catchButton);
+            actionPanel.add(runButton);
+    }
+
+    private void updateHealthLabels() {
+
+        playerHealthLabel.setText("Player's Health: " + );
+        enemyHealthLabel.setText("Enemy's Health: " + );
+
+        
+    }
+
+
 
     private void createPlayerImagePanel(JPanel container) {
         playerImagePanel = new JPanel();
