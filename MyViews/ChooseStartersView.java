@@ -20,7 +20,7 @@ public class ChooseStartersView {
         this.capturedList = capturedList;
         this.gameController = gameController;
         this.panel = new JPanel();
-        panel.setLayout(new BorderLayout()); // Use BorderLayout for the main panel
+        panel.setLayout(new BorderLayout()); 
 
         setStarterMenuGreetings();
         selectStarterPokemon();
@@ -40,15 +40,6 @@ public class ChooseStartersView {
 
         JLabel greetingsPromptLbl = new JLabel();
         greetingsPromptLbl.setText("Choose a starter pokemon!");
-        // //                                                                               FOR TESTING
-        // invmodel.initializeCreatures(creaturesList);
-        // // 
-        // for(CreatureModel creature : creaturesList) {
-        //     if(creature.getEvoLvl() == 1)
-        //         System.out.println(creature.getName());
-        // }
-        // 
-        // //  
         constraints.gridx = 0;
         constraints.gridy = 0;
         constraints.gridwidth = 2;
@@ -87,6 +78,7 @@ public class ChooseStartersView {
                         CreatureModel extraCreature1 = new CreatureModel("Strawander", "Fire",  "A", 1, 50, false, false, 127);
                         CreatureModel extraCreature2 = new CreatureModel("Pikachu", "Electricity",  "P", 1, 50, false, false, 130);
                         CreatureModel extraCreature3 = new CreatureModel("Strawleon", "Fire",  "A", 2, 150, false, false, 190);
+                        CreatureModel extraCreature4 = new CreatureModel("Strawleon", "Fire",  "A", 2, 150, false, false, 111);
                         extraCreature1.setCaptured(true);
                         extraCreature2.setCaptured(true);
 
@@ -94,7 +86,7 @@ public class ChooseStartersView {
                         capturedList.add(extraCreature1);
                         capturedList.add(extraCreature2);
                         capturedList.add(extraCreature3);
-
+                        capturedList.add(extraCreature4);
                         gameController.switchToPlayMenu();
                     }
                 }

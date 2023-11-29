@@ -91,15 +91,23 @@ public class InventoryView {
         creatureComboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String selectedPokemon = (String) creatureComboBox.getSelectedItem();
-                for(CreatureModel creature : capturedList) {
-                    if(creature.getName().equalsIgnoreCase(selectedPokemon)) {
-                        creature.setActive(true);
+                int selectedIndex = creatureComboBox.getSelectedIndex();
+        
+                if (selectedIndex >= 0 && selectedIndex < capturedList.size()) {
+                    CreatureModel selectedCreature = capturedList.get(selectedIndex);
+        
+                    for(CreatureModel creature : capturedList) {
+                        if(creature.getName().equalsIgnoreCase(selectedCreature.getName()) && creature.getID() == selectedCreature.getID()) {
+                            for(CreatureModel creatures : capturedList)
+                                System.out.println(creatures.getName() + " " + creatures.getID() + " " + selectedIndex);
+                            System.out.println(creature.getID() + " C S " + selectedCreature.getID());
+                            creature.setActive(true);
+                        }
+                        else   
+                            creature.setActive(false);
                     }
-                    else
-                        creature.setActive(false);
+                    refreshInventoryTable();
                 }
-                refreshInventoryTable();
             }
         });
 
