@@ -89,7 +89,7 @@ public class BattleView {
             @Override
             public void actionPerformed(ActionEvent e) {
      
-                gameController.swapCreature(); 
+                // gameController.swapCreature(); 
             }
         });
 
@@ -115,8 +115,8 @@ public class BattleView {
 
     private void updateHealthLabels() {
 
-        playerHealthLabel.setText("Player's Health: " + );
-        enemyHealthLabel.setText("Enemy's Health: " + );
+        // playerHealthLabel.setText("Player's Health: " + );
+        // enemyHealthLabel.setText("Enemy's Health: " + );
 
         
     }
