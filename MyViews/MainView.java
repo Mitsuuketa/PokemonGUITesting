@@ -23,7 +23,13 @@ public class MainView {
         this.mainFrame.setVisible(true);
     }
     
+    /**
+    * Switches to the specified panel. This is useful when you want to change the layout of the panel in a way that preserves the user's screen and need to re - layout the panel after it has been moved to another panel.
+    * 
+    * @param newPanel - The panel to switch to. If null the current panel is
+    */
     public void switchToNewPanel(JPanel newPanel) {
+        // Removes the current panel from the main frame.
         if (currentPanel != null) {
             currentPanel.setVisible(false);
             mainFrame.remove(currentPanel);

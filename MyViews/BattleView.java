@@ -22,10 +22,19 @@ public class BattleView {
         this.gameController = gameController;
     }
 
+    /**
+    * Returns the panel that this panel is associated with. This is used to provide access to the panel's properties when it is added to a JTabbedPane.
+    * 
+    * 
+    * @return the panel that this panel is associated with or null if there is none for the panel type ( such as a menu
+    */
     public JPanel getPanel() {
         return panel;
     }
 
+    /**
+    * Initializes battle view. This is called from initialize () and should not be called directly by the user
+    */
     private void initializeBattleView() {
         panel = new JPanel(new BorderLayout());
         panel.setBackground(Color.BLACK);
@@ -41,6 +50,11 @@ public class BattleView {
         JButton exploreButton = new JButton("Back");
         exploreButton.setFocusable(false);
         exploreButton.addActionListener(new ActionListener() {
+            /**
+            * Switches to the explore menu. This is called when the user clicks on the menu button.
+            * 
+            * @param e - The ActionEvent that caused this method to be called
+            */
             @Override
             public void actionPerformed(ActionEvent e) {
                 gameController.switchtoExploreMenu();
@@ -51,6 +65,11 @@ public class BattleView {
         panel.add(imagePanelsContainer, BorderLayout.CENTER);
     }
 
+    /**
+    * Creates and adds the player image panel to the given container. This is used to display the player's image when the player clicks on the button
+    * 
+    * @param container - Panel to add the
+    */
     private void createPlayerImagePanel(JPanel container) {
         playerImagePanel = new JPanel();
         playerImagePanel.setBackground(Color.GREEN); // Set to actual image later
@@ -63,6 +82,11 @@ public class BattleView {
         container.add(playerImagePanel, constraints);
     }
 
+    /**
+    * Creates enemy image panel. This panel is used to display the image of the enemy
+    * 
+    * @param container - Panel to add panel
+    */
     private void createEnemyImagePanel(JPanel container) {
         enemyImagePanel = new JPanel();
         enemyImagePanel.setBackground(Color.GREEN); // Set to actual image later
@@ -74,6 +98,9 @@ public class BattleView {
         container.add(enemyImagePanel, constraints);
     }
 
+    /**
+    * Creates the panel that displays the player's creature. Used to add text to the panel when there is no creature
+    */
     private void createPlayerTextPanel() {
         playerTextPanel = new JPanel();
         playerTextPanel.setBackground(Color.BLACK);
@@ -84,6 +111,9 @@ public class BattleView {
         panel.add(playerTextPanel, BorderLayout.SOUTH);
     }
 
+    /**
+    * Creates the enemy text panel and adds it to the panel. This is used to display the creature name
+    */
     private void createEnemyTextPanel() {
         enemyTextPanel = new JPanel();
         enemyTextPanel.setBackground(Color.BLACK);

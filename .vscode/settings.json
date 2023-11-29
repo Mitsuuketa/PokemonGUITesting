@@ -1,4 +1,5 @@
 {
     "docwriter.progress.trackMethods": false,
-    "docwriter.style": "Javadoc"
+    "docwriter.style": "Javadoc",
+    "docify.commentService.docstringFormat": "JavaDoc"
 }

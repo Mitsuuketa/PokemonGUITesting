@@ -17,10 +17,19 @@ public class ExploreView {
         initializeExploreMenuGreetings();
     }
 
+    /**
+    * Returns the panel that this panel is associated with. This is used to provide access to the panel's properties when it is added to a JTabbedPane.
+    * 
+    * 
+    * @return the panel that this panel is associated with or null if there is none for the panel type ( such as a menu
+    */
     public JPanel getPanel() {
         return panel;
     }
 
+    /**
+    * Initialize explore menu greetings. This is called from constructor and should not be called externally
+    */
     private void initializeExploreMenuGreetings() {
         panel.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
@@ -37,6 +46,11 @@ public class ExploreView {
         JButton btn1 = new JButton("Area 1");
         btn1.setFocusable(false);
         btn1.addActionListener(new ActionListener() {
+            /**
+            * Creates and adds an AreaView to the panel. This is called when the user clicks on the button
+            * 
+            * @param e - the ActionEvent that caused
+            */
             @Override
             public void actionPerformed(ActionEvent e) {
                 AreaView area1 = new AreaView(5, 1, gameController);
@@ -52,6 +66,11 @@ public class ExploreView {
         JButton btn2 = new JButton("Area 2");
         btn2.setFocusable(false);
         btn2.addActionListener(new ActionListener() {
+            /**
+            * Creates and adds a new area to the panel. This is called when the user clicks on the button
+            * 
+            * @param e - the ActionEvent that caused
+            */
             @Override
             public void actionPerformed(ActionEvent e) {
                 AreaView area2 = new AreaView(3, 3, gameController);
@@ -67,6 +86,11 @@ public class ExploreView {
         JButton btn3 = new JButton("Area 3");
         btn3.setFocusable(false);
         btn3.addActionListener(new ActionListener() {
+            /**
+            * Creates and adds a 3x4 area to the panel. This is called when the user clicks on the button
+            * 
+            * @param e - the ActionEvent that caused this
+            */
             @Override
             public void actionPerformed(ActionEvent e) {
                 AreaView area3 = new AreaView(4, 4, gameController);
@@ -82,6 +106,11 @@ public class ExploreView {
         JButton btn4 = new JButton("Exit");
         btn4.setFocusable(false);
         btn4.addActionListener(new ActionListener() {
+            /**
+            * Called when the user presses the button. Switches to the play menu. This is the method that should be called by the user.
+            * 
+            * @param e - The ActionEvent that caused this method to be called
+            */
             @Override
             public void actionPerformed(ActionEvent e) {
                 gameController.switchToPlayMenu();
